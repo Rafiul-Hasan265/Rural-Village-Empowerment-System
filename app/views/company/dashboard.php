@@ -421,7 +421,17 @@
 </div>
 
 <!-- Done Modal -->
-
+<div class="action-modal" id="doneModal">
+    <div class="action-modal-content">
+        <div class="action-modal-icon done">✓</div>
+        <h3 class="action-modal-title">Mark as Done</h3>
+        <p class="action-modal-message">Mark this order as completed?</p>
+        <div class="action-modal-buttons">
+            <button class="modal-btn-cancel" onclick="closeDoneModal()">Cancel</button>
+            <a href="#" class="modal-btn-confirm done" id="doneConfirmBtn">Mark Done</a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
