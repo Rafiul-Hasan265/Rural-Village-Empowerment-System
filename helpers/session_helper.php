@@ -1,0 +1,36 @@
+<?php
+// Session start kora (jodi na thake)
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Flash message helper: Registration success ba login failure-er message dekhate
+function flash($name = '', $message = '', $class = 'alert alert-success') {
+    if (!empty($name)) {
+        if (!empty($message)) {
+            if (!empty($_SESSION[$name])) {
+                unset($_SESSION[$name]);
+            }
+            if (!empty($_SESSION[$name . '_class'])) {
+                unset($_SESSION[$name . '_class']);
+            }
+
+            $_SESSION[$name] = $message;
+            $_SESSION[$name . '_class'] = $class;
+        } elseif (empty($message) && !empty($_SESSION[$name])) {
+            $class = !empty($_SESSION[$name . '_class']) ? $_SESSION[$name . '_class'] : '';
+            echo '<div class="' . $class . '" id="msg-flash">' . $_SESSION[$name] . '</div>';
+            unset($_SESSION[$name]);
+            unset($_SESSION[$name . '_class']);
+        }
+    }
+}
+
+// User login kora kina check kora (Security-r jonno)
+function isLoggedIn() {
+    if (isset($_SESSION['user_id'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
